@@ -1,0 +1,67 @@
+
+<div class="limiter">
+    
+    <div class="navbar">
+        <app-sidenav></app-sidenav>
+        <!-- <mat-sidenav-container class="example-container" autosize> -->
+      <!-- <app-sidenav></app-sidenav> -->
+       <!-- <div *ngIf="isLoad">
+            <mat-spinner class="spinner" color="primary"></mat-spinner>
+          </div> -->
+          <!-- <mat-spinner *ngIf="isLoadingResults" class="spinner" color =primary></mat-spinner> -->
+    
+       <mat-card class="responsive-class">
+           
+            <div class="userdetails">
+              <h1>Hi {{currentUser.firstName}}</h1>
+            </div>
+            <div class="example-header">
+              <mat-form-field fxFlex="40%">
+                <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filter">
+              </mat-form-field>
+            </div>
+            <!-- <app-userlist [dataSource]="dataSource"></app-userlist> -->
+            <div [hidden]="isTableHasData">
+              No results Found
+            </div>
+            
+            <div class="mattable-container">      
+              <table mat-table [hidden]="!isTableHasData" [dataSource]="dataSource" matSort class="mat-elevation-z8">
+                        <ng-container matColumnDef="index">
+                          <th mat-header-cell *matHeaderCellDef> No </th>
+                          <td mat-cell *matCellDef="let element; let i = index">{{ i + 1 }}</td>
+                        </ng-container>     
+            
+                  <ng-container matColumnDef="firstName">
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header>First Name</th>
+                    <td mat-cell *matCellDef="let users">{{users.firstName}}</td>
+                  </ng-container>
+                
+              
+                  <ng-container matColumnDef="lastName">
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header>Last Name</th>
+                    <td mat-cell *matCellDef="let users">{{users.lastName}}</td>
+                  </ng-container>
+            
+                  <ng-container matColumnDef="username">
+                    <th mat-header-cell *matHeaderCellDef  mat-sort-header>Username</th>
+                    <td mat-cell *matCellDef="let users">{{users.username}}</td>
+                  </ng-container>
+                  <ng-container matColumnDef="email">
+                      <th mat-header-cell *matHeaderCellDef  mat-sort-header>Email</th>
+                      <td mat-cell *matCellDef="let users"> 
+                        <ng-container *ngIf="users.email" >{{users.email}}</ng-container>  
+                        <ng-container *ngIf="!users.email" >Not Available</ng-container> </td>
+                    </ng-container>
+                    
+                  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                  <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+                </table>
+              </div>   
+       
+                
+             
+              <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>  
+          </mat-card>
+      </div>
+    </div>
