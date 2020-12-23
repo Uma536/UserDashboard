@@ -9,10 +9,11 @@ import { SidenavComponent } from './components/sidenav/sidenav.component';
 import { DialogboxComponent } from './components/dialogbox/dialogbox.component';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
+import { PagenotfoundComponent } from './components/pagenotfound/pagenotfound.component';
 
 
 @NgModule({
-  declarations: [ HomeComponent, EditprofileComponent, SidenavComponent, DialogboxComponent],
+  declarations: [ HomeComponent, EditprofileComponent, SidenavComponent, DialogboxComponent, PagenotfoundComponent],
   imports: [
     CommonModule,
     HomeRoutingModule,

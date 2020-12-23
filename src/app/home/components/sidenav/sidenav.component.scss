@@ -13,25 +13,30 @@
      position: fixed;
      top: 64px;
   }
-
+  .sidenav-content {
+    overflow-x: hidden !important;
+  }
+ 
 
   .homeicon{
       display:flex;
       align-items: center;
       padding: 8px 0px;
       flex-direction: column;
-      /* .hometext{
+      .hometext{
           padding-left:4px;
           font-size:17px;
-      } */
-      /* button{
+      } 
+       button{
         display:flex;
         align-items: center; 
-      } */
+      } 
   }
-  .homeicon:hover > *{
+  /* .homeicon:hover > *{
     color:#3f51b5; 
-  }
+  } */
+
+  
 .navbar{
     height:100%;
 }
@@ -43,10 +48,17 @@
 .mat-toolbar.mat-primary{
     position:fixed;
     z-index:9999;
-    /* .mat-icon{
+    .mat-icon{
         color:white;
-    } */
+    } 
 }
 .sidenav-content {
   overflow-x: hidden !important;
 }
+
+
+  .mat-list-item.active {
+    background-color:#3f51b5; 
+  }
+
+

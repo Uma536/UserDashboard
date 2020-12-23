@@ -9,38 +9,48 @@ import { User } from 'src/app/model/user';
 @Component({
   selector: 'app-sidenav',
   templateUrl: './sidenav.component.html',
-  styleUrls: ['./sidenav.component.css']
+  styleUrls: ['./sidenav.component.scss']
 })
 export class SidenavComponent implements OnInit {
 
   @Input() item: NavItem;
-
+  currentUser: User;
+  currentRouter = '';
   constructor( public dialog: MatDialog,
     // tslint:disable-next-line:align
     private authenticationService: AuthenticationService,
     // tslint:disable-next-line:align
-    private router: Router) { }
+    private router: Router) {
+      {
+        this.currentUser = this.authenticationService.currentUserValue;
+        console.log("userid",this.currentUser.id)
+        this.authenticationService.currentUser.subscribe(x => this.currentUser = x);
+      }
+     }
 
   @ViewChild('sidenav') sidenav: MatSidenav;
   isExpanded = true;
-  currentUser: User;
+  // tslint:disable-next-line:no-inferrable-types
+  showSubmenu: boolean = false;
+  isShowing = false;
   // tslint:disable-next-line:typedef
   navItems: NavItem[] = [
     {
       displayName: 'Home',
       iconName: 'home',
-      route: '',
+      route: 'home',
     },
     {
       displayName: 'Profile',
       iconName: 'account_circle',
-      route: 'editprofile/{{currentUser.id}}',
+      route: 'editprofile/',
     },
     {
       displayName: 'Logout',
       iconName: 'power_settings_new',
       route: 'login'
     },
+    // tslint:disable-next-line:semicolon
     ]
 
   ngOnInit(): void {
@@ -61,8 +71,24 @@ export class SidenavComponent implements OnInit {
     this.authenticationService.logout();
     this.router.navigate(['/login']);
   }
+  // tslint:disable-next-line:typedef
   onItemSelected(item: NavItem) {
-      this.router.navigate([item.route]);
+    if(item.route === 'editprofile/'){
+      item.route = item.route +  this.currentUser.id;
+    }
+    this.currentRouter = item.route;
+      // tslint:disable-next-line:align
+      this.router.navigate([this.currentRouter]);
   }
+  isActive(item){
+    if(item.route === 'editprofile/'){
+      item.route = item.route +  this.currentUser.id;
+    }
+    if(window.location.href.includes(item.route)){
+    return true
+    }
+    return false
+  }
+  
 
 }

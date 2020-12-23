@@ -7,7 +7,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
-  styleUrls: ['./login.component.css']
+  styleUrls: ['./login.component.scss']
 })
 export class LoginComponent implements OnInit {
   loginForm: FormGroup;
@@ -47,11 +47,12 @@ export class LoginComponent implements OnInit {
               });
               this.router.navigate([this.returnUrl]);
             },
-            error => {
-              this.snackBar.open('Username or Password incorrect', '', {
-                duration: 1000,
-              });
-            });
+            // error => {
+            //   this.snackBar.open('Username or Password incorrect', '', {
+            //     duration: 1000,
+            //   });
+            // });
+        );
 }
 
 }

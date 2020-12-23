@@ -1,1 +1,58 @@
 <app-sidenav></app-sidenav>
+<div class="limiter">
+    <div class="navbar">
+  <app-sidenav></app-sidenav>
+         <mat-card class="login-card editprofilecard">
+            <div class="profilecard">
+                <h1>Edit Profile</h1>
+                <form [formGroup]="editForm" (ngSubmit)="onSubmit()">
+        <div class="editprofile">
+    <mat-form-field appearance="legacy">
+      <mat-label>First Name</mat-label>
+      <input matInput placeholder="First Name" name="First Name" formControlName="firstName" [ngClass]="{ 'is-invalid': submitted && formValue.username.errors }" >
+      <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
+ </mat-form-field>
+ <div *ngIf="submitted && formValue.firstName.errors" class="invalid-feedback ">
+    <div *ngIf="formValue.firstName.errors.required || formValue.firstName.errors.pattern">FirstName is required and valid</div>
+</div>
+</div>
+  
+<div class="editprofile">
+    <mat-form-field appearance="legacy">
+      <mat-label>Last Name</mat-label>
+      <input matInput placeholder="Last Name" name="Last Name" formControlName="lastName">
+      <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
+    </mat-form-field>
+  </div>
+  <div class="editprofile">
+    <mat-form-field appearance="legacy">
+      <mat-label>Username</mat-label>
+      <input matInput placeholder="username" name="username" formControlName="username" [ngClass]="{ 'is-invalid': submitted && formValue.username.errors }" >
+      <mat-icon matSuffix>account_circle</mat-icon>
+    </mat-form-field>
+    <div *ngIf="submitted && formValue.username.errors" class="invalid-feedback">
+        <div *ngIf="formValue.username.errors.required">Username is required</div>
+    </div>
+  </div>
+  
+    <div class="editprofile">
+    <mat-form-field appearance="legacy">
+      <mat-label>Email</mat-label>
+      <input matInput placeholder="Email" name="email" formControlName="email">
+      <mat-icon matSuffix>email</mat-icon>
+    </mat-form-field>
+    </div>
+    <div class="editprofile">
+    <mat-form-field appearance="legacy">
+      <mat-label>Bio</mat-label>
+      <textarea matInput placeholder="Add a description about yourself..."
+        formControlName="bio"></textarea>
+    </mat-form-field>
+  </div>
+  <button class="btn-secondary">Update</button>
+  </form>
+</div>
+  </mat-card>   
+</div>
+</div>
+

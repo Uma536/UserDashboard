@@ -10,8 +10,9 @@ import {
 import { Observable, of, throwError } from 'rxjs';
 import { mergeMap, materialize, dematerialize, delay } from 'rxjs/operators';
 // array in local storage for registered users
- const users = JSON.parse(localStorage.getItem('users')) || [] ;
+const users = JSON.parse(localStorage.getItem('users')) || [] ;
 
+// const users = JSON.parse(localStorage.getItem('users'));
 
 console.log('userdetails', users);
 
@@ -20,7 +21,7 @@ export class BackendInterceptor implements HttpInterceptor {
 
   intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
     const { url, method, headers, body } = request;
-console.log("the request",request);
+console.log("the request",request)
     // wrap in delayed observable to simulate server api call
     return of(null)
     .pipe(mergeMap(handleRoute));
@@ -71,6 +72,7 @@ console.log("the request",request);
         return error('Username "' + user.username + '" is already taken');
       }
       user.id = users.length ? Math.max(...users.map(x => x.id)) + 1 : 1;
+      console.log("registerfunctionlity",users.push(user));
       localStorage.setItem('users', JSON.stringify(users));
       return ok();
     }

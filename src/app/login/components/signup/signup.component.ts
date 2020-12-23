@@ -7,7 +7,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 @Component({
   selector: 'app-signup',
   templateUrl: './signup.component.html',
-  styleUrls: ['./signup.component.css']
+  styleUrls: ['./signup.component.scss']
 })
 export class SignupComponent implements OnInit {
   registerForm: FormGroup;
@@ -53,6 +53,7 @@ export class SignupComponent implements OnInit {
           duration: 1000,
         });
       });
+  
   console.log('userservice', this.authenticationService);
 }
 
